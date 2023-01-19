@@ -1,22 +1,61 @@
-@include('header')
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <h2>Login</h2>
-</head>
-<body>
-    @auth
-    <p></p>
-    @else
-    <form action="/login" method="post">
-    @csrf
-    <input type="email" name="email" id="email" placeholder="email" value={{Cookie::get('mycookie') !== null ? Cookie::get('mycookie') : "" }}><br>
-    <input type="password" name="password" id="password" placeholder="password"><br>
-    <input type="checkbox" name="remember" id="remember" checked={{Cookie::get('mycookie') !== null }}> Remember Me  <br>
-    <input type="submit" value="Login">
-    </form>
-    @endif
-</body>
-</html>
+@extends('Components.main')
+@section('content')
+
+<body id="login">
+    <div class="container" id="container">
+        <div class="form-container register-container">
+            <form action="" method="post">
+                @csrf
+                <h1>Register</h1>
+                <div class="social-container">
+                    <a href=""><i class="fab fa-google"></i></a>
+                    <a href="""><i class="fab fa-facebook"></i></a>
+                </div>
+                <input type="text" name="name" id="" placeholder="Username" required>
+                <input type="email" placeholder="Email" name="email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button>Register</button>
+            </form>
+        </div>
+        <div class="form-container login-container">
+            <form action="{{route('login')}}" method="POST">
+                @csrf
+                <h1>Login</h1>
+                <div class="social-container">
+                    <a href=""><i class="fab fa-google"></i></a>
+                    <a href=""><i class="fab fa-facebook"></i></a>
+                </div>
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" name="password" placeholder="Password">
+                <a href="">Forgot Password</a>
+                <button>Login</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Please login with your account</p>
+                    <button class="ghost" id="signIn" onclick="RemoveRightPanel()">Login</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Come and join with us</p>
+                    <button class="ghost" id="signUp" onclick="AddRightPanel()">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </body>
+
+
+
+
+
+
+
+
+
+
+@endsection

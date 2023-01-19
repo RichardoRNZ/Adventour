@@ -113,4 +113,9 @@ class MainController extends Controller
         $items = Transactionheader::where('user_id', Auth::id())->get();
         return view('history', compact('items'));
     }
+    public static function getAllCountry()
+    {
+        $countries = Country::with('tours')->has('tours')->get();
+        return $countries;
+    }
 }

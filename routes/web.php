@@ -16,10 +16,10 @@ use App\Http\Controllers\CartController;
 */
 
 /* User Login */
+
 Route::get('/', [MainController::class, 'indexhome']);
-Route::get('/login', [MainController::class, 'loginPage']);
+Route::get('/login', [MainController::class, 'loginPage'])->name('login');
 Route::post('/login', [MainController::class, 'login']);
-Route::get('/register', [MainController::class, 'registerPage']);
 Route::post('/registeruser', [MainController::class, 'registeruser']);
 Route::get('/logout', [MainController::class, 'logout']);
 Route::get('/profile', [MainController::class, 'profile'])->middleware('security');
