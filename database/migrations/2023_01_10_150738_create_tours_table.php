@@ -22,9 +22,9 @@ class CreateToursTable extends Migration
             $table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('hotel_id')->references('id')->on('hotels')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('description');
+            $table->text('description');
             $table->integer('price');
-            $table->string('image');
+            $table->text('image');
             $table->timestamps();
         });
     }

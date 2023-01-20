@@ -6,11 +6,13 @@
         var(--secondary-color)
         );
     }
-nav, footer{
+.navbar, footer{
     background-color: #191923;
 }
+
 body{
-    background-color: #FFFFF3;
+    background-color: #FBFEF9;
+    min-height: 100vh;
 }
 .icon{
     color: #fff;
@@ -445,6 +447,106 @@ body{
     color: var(--main-color);
     margin-left: 40%;
 }
+.jumbotron{
+    margin-top: 50px;
+    background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/003.webp');
+    height: 200px;
+}
+.travel-pack{
+    padding-bottom: 80px;
+
+}
+.product-card{
+
+    box-shadow: 0 6px 20px 0  rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    height: 337px;
+    width: 289px;
+
+}
+.travel-pack .card-body{
+   padding-left: 15px;
+   padding-top: 15px;
+}
+.product-card img{
+    max-height: 185px;
+}
+.product-header{
+    margin-bottom: 50px;
+}
+.product-header h2{
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #444444;
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+
+
+
+
+}
+.pagination > li > a,
+.pagination > li > span {
+    color: #BF1363;
+
+}
+
+
+
+
+.product-title h4{
+    font-size: 1.3rem;
+    color: #444444;
+    padding-bottom: 5px;
+
+}
+.product-price{
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    color: #444444;
+    padding-bottom: 10px;
+}
+.detail-button a{
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #fff;
+    letter-spacing: 1px;
+    text-decoration: none;
+    background: var(--main-color);
+    /* background: #485665; */
+    /* blue :#18206F*/
+    /* pruple : #485665
+    dark : #1E3231 */
+
+    transition: transform 80ms ease-in;
+    padding: 12px;
+    width: 120px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: 5px;
+
+
+}
+.detail-button a:hover{
+    color: var(--secondary-color);
+    border: 2px solid var(--main-color);
+    background: #fff;
+}
+
+.detail-button:active{
+    transform: scale(0.95);
+}
+.detail-button:focus{
+   outline: none;
+}
+
+
 @media(max-width : 992px)
 {
     .card-container{

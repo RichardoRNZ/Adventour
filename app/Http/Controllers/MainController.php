@@ -44,7 +44,7 @@ class MainController extends Controller
 
     public function indextravel() {
         session()->forget("cart");
-        $tours = Tour::all();
+        $tours = Tour::paginate(12);
         return view('travelpack', compact('tours'));
     }
 
