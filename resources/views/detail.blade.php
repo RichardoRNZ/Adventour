@@ -1,4 +1,5 @@
-@include('header')
+@extends('Components.main')
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 </head>
 <body>
 
-<?php 
+<?php
 use App\Models\Tourdetail;
 $tourdetails = Tourdetail::where('tour_id', '=', $tour->id)->get();
 ?>
@@ -38,13 +39,13 @@ $tourdetails = Tourdetail::where('tour_id', '=', $tour->id)->get();
 
 <div class="row row-cols-4 row-cols-md-5 g-4">
 @foreach($tourdetails as $tourdetail)
-<div class="col">  
+<div class="col">
     <div class="card" style="width: 100%; height: 100%;">
       <img src="{{Storage::url($tourdetail->image)}}" class="card-img-top" height="150px" width="150px" alt="Card image cap">
       <div class="card-body d-flex flex-column">
       <h5 class="card-title">{{$tourdetail->name}}</h5>
       <p class="card-text">{{$tourdetail->description}}</p>
-        
+
       </div>
     </div>
   </div>
@@ -62,7 +63,7 @@ $tourdetails = Tourdetail::where('tour_id', '=', $tour->id)->get();
               <label for="quantity">Quantity</label>
               <input type="number" class="form-control" name="quantity" id="quantity">
 </div>
-    <button class="btn btn-primary">Book Now</button>       
+    <button class="btn btn-primary">Book Now</button>
 </form>
 
 <div class="error-msg">
@@ -79,3 +80,4 @@ $tourdetails = Tourdetail::where('tour_id', '=', $tour->id)->get();
 
 </body>
 </html>
+@endsection
