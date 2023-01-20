@@ -29,7 +29,7 @@ Route::get('/authorized/google/callback',[AuthController::class,'GoogleRedirect'
 
 
 /* Main Pages */
-Route::get('/travelpack', [MainController::class, 'indextravel']);
+Route::get('/travelpack', [MainController::class, 'indextravel'])->name('package');
 Route::get('/detail/{id}', [MainController::class, 'redirectDetail'])->name('tour.detail');
 Route::get('/country/{id}', [MainController::class, 'list'])->name('country.list');
 Route::get('/searchpack', [MainController::class, 'searchpack']);

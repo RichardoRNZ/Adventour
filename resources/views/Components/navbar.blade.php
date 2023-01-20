@@ -56,7 +56,7 @@
             </ul>
           </li>
           <li class="nav-item text-white">
-            <a class="nav-link text-white" href="#">Package</a>
+            <a class="nav-link text-white" href="{{route('package')}}">Package</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="#">About</a>
