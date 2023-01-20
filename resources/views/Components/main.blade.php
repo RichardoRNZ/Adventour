@@ -29,7 +29,7 @@
     <!-- Start your project here-->
         @include('Components.navbar')
         @yield('content')
-        @include('Components.footer')
+        {{-- @include('Components.footer') --}}
     <script type="text/javascript" src="{{asset('asset/js/mdb.min.js')}}"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="{{asset('asset/js/main.js')}}"></script>

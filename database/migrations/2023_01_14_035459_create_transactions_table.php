@@ -15,12 +15,9 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('transactionheader_id');
-            $table->unsignedBigInteger('tour_id');
-            $table->foreign('transactionheader_id')->references('id')->on('transactionheaders')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('tour_id')->references('id')->on('tours')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('quantity');
-            $table->integer('price');
+            $table->string('customer_name');
+            $table->integer('phone');
+            $table->date('booking_date');
             $table->timestamps();
         });
     }

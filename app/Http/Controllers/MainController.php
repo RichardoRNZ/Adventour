@@ -43,6 +43,7 @@ class MainController extends Controller
 
 
     public function indextravel() {
+        session()->forget("cart");
         $tours = Tour::all();
         return view('travelpack', compact('tours'));
     }

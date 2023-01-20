@@ -8,6 +8,7 @@ use App\Models\Hotel;
 use App\Models\Restaurant;
 use App\Models\Tourdetail;
 use App\Models\Cart;
+use App\Models\DetailTransaction;
 use App\Models\Transaction;
 use App\Models\Transactionheader;
 use Illuminate\Support\Carbon;
@@ -43,6 +44,7 @@ class CartController extends Controller
         $id = $request->tour_id;
         $cart = session("cart");
         $item = Tour::where('id',$id)->first();
+
         $cart[$id] =[
             "image" => $item->image,
             "name" => $item->name,
@@ -71,18 +73,31 @@ class CartController extends Controller
     public function transaction(Request $request) {
         $cartitems = session("cart");
 
+
+
+        $transaction = new Transaction();
+        $transaction->customer_name = $request->gender.". ".$request->name;
+        $transaction->phone = $request->phone;
+        $transaction->booking_date = $request->date;
+        $transaction->save();
+
+        $header = Transactionheader::getLatestTransaction();
         $th = new Transactionheader();
-        $th->user_id = $request->user_id;
-        $th->transaction_timestamp = $request->currenttime;
+        $th->user_id = auth()->user()->id;
+        $th->transaction_id = $header->id;
+        $th->transaction_date = date("Y-m-d");
         $th->save();
 
+
         foreach($cartitems as $c =>$item) {
-            $transaction = new Transaction();
-            $transaction->transactionheader_id = $th->id;
-            $transaction->tour_id = $c;
-            $transaction->quantity = $item['quantity'];
-            $transaction->price = $item['subtotal'];
-            $transaction->save();
+            $detailTransaction = new DetailTransaction();
+            $h = DetailTransaction::getLatestHeaderTransaction();
+            $detailTransaction->header_id = $h->id;
+            $detailTransaction->tour_id = $c;
+            $detailTransaction->quantity = $item['quantity'];
+            $detailTransaction->price = $item['subtotal'];
+            $detailTransaction->save();
+
         }
 
         session()->forget("cart");

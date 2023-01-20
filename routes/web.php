@@ -40,5 +40,5 @@ Route::get('/contact', [MainController::class, 'contact']);
 Route::get('/cart', [CartController::class, 'viewCart'])->middleware('security');
 Route::post('/cartadd', [CartController::class, 'cartadd'])->middleware('security');
 Route::get('/destroy', [CartController::class, 'destroyitem'])->name('delete-item')->middleware('security');
-Route::post('/transaction', [CartController::class, 'transaction'])->middleware('security');
+Route::post('/transaction', [CartController::class, 'transaction'])->middleware('security')->name('transaction');
 Route::get('/history', [MainController::class, 'viewHistory'])->middleware('security');

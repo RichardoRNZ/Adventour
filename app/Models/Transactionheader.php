@@ -8,9 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Transactionheader extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'transaction_timestamp'];
+    protected $fillable = ['user_id', 'transaction_date','transaction_id'];
 
     public function transactions() {
-        return $this->belongsTo(Transaction::class, 'transactionheader_id', 'id'); 
+        return $this->belongsTo(Transaction::class, 'transactionheader_id', 'id');
+    }
+    public static function getLatestTransaction()
+    {
+        $transaction = Transaction::latest()->first();
+        return $transaction;
     }
 }

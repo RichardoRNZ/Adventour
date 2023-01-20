@@ -17,7 +17,8 @@ class CreateTransactionheadersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->timestamp('transaction_timestamp');
+            $table->foreignId('transaction_id')->constrained('transactions','id');
+            $table->date('transaction_date');
             $table->timestamps();
         });
     }
