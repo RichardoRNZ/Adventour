@@ -4,12 +4,11 @@
 <body id="login">
     <div class="container" id="container">
         <div class="form-container register-container">
-            <form action="" method="post">
+            <form action="{{route('register')}}" method="post">
                 @csrf
                 <h1>Register</h1>
                 <div class="social-container">
-                    <a href=""><i class="fab fa-google"></i></a>
-                    <a href="""><i class="fab fa-facebook"></i></a>
+                    <a href="{{route('google_login')}}"><i class="fab fa-google"></i></a>
                 </div>
                 <input type="text" name="name" id="" placeholder="Username" required>
                 <input type="email" placeholder="Email" name="email" required>
@@ -22,8 +21,7 @@
                 @csrf
                 <h1>Login</h1>
                 <div class="social-container">
-                    <a href=""><i class="fab fa-google"></i></a>
-                    <a href=""><i class="fab fa-facebook"></i></a>
+                    <a href="{{route('google_login')}}"><i class="fab fa-google"></i></a>
                 </div>
                 <input type="email" placeholder="Email" name="email">
                 <input type="password" name="password" placeholder="Password">

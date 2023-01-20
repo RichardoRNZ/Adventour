@@ -70,41 +70,57 @@
       <!-- Collapsible wrapper -->
 
       <!-- Right elements -->
-      <div class="d-flex align-items-center">
-        <!-- Icon -->
-        <a class="text-reset me-3" href="#">
-          <i class="icon fas fa-shopping-cart"></i>
-        </a>
+      <form class="d-flex input-group w-auto">
+      <input
+        type="search"
+        class="form-control rounded"
+        placeholder="Search"
+        aria-label="Search"
+        aria-describedby="search-addon"
+        id="form1"
+      />
+      <span class="input-group-text text-white border-0" id="search-addon">
+        <i class="fas fa-search"></i>
+      </span>
+    </form>
+    @auth
+        @if (Auth::user()->role=="customer")
+        <div class="d-flex align-items-center">
+            <!-- Icon -->
+            <a class="text-reset me-3" href="#">
+              <i class="icon fas fa-ticket"></i>
+            </a>
 
-        <!-- Notifications -->
-        <div class="dropdown">
-          <a
-            class="text-reset me-3 dropdown-toggle hidden-arrow"
-            href="#"
-            id="navbarDropdownMenuLink"
-            role="button"
-            data-mdb-toggle="dropdown"
-            aria-expanded="false"
-          >
-          <i class="icon fa-solid fa-clock-rotate-left "></i>
-            <span class="badge rounded-pill badge-notification bg-danger">1</span>
-          </a>
-          <ul
-            class="dropdown-menu dropdown-menu-end"
-            aria-labelledby="navbarDropdownMenuLink"
-          >
-            <li>
-              <a class="dropdown-item" href="#">Some news</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Another news</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </li>
-          </ul>
-        </div>
-        <!-- Avatar -->
+            <!-- Notifications -->
+            <div class="dropdown">
+              <a
+                class="text-reset me-3 dropdown-toggle hidden-arrow"
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false"
+              >
+              <i class="icon fa-solid fa-clock-rotate-left "></i>
+                <span class="badge rounded-pill badge-notification bg-danger">1</span>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <li>
+                  <a class="dropdown-item" href="#">Some news</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Another news</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </div>
+        @endif
+            <!-- Avatar -->
         <div class="profile">
             <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" onclick="ProfileMenu()"/>
         </div>
@@ -130,7 +146,7 @@
                     </a>
                 </div>
                 <div class="profile-menu-link">
-                    <a href="">
+                    <a href="{{route('logout')}}">
                         <i class="fas fa-sign-out-alt mr-3"></i>
                         <p>Sign Out</p>
                         <span>></span>
@@ -138,6 +154,9 @@
                 </div>
             </div>
         </div>
+    @endauth
+
+
         {{-- endmenuwrap --}}
         </div>
       </div>

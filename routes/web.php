@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\CartController;
@@ -17,12 +18,15 @@ use App\Http\Controllers\CartController;
 
 /* User Login */
 
-Route::get('/', [MainController::class, 'indexhome']);
-Route::get('/login', [MainController::class, 'loginPage'])->name('login');
-Route::post('/login', [MainController::class, 'login']);
-Route::post('/registeruser', [MainController::class, 'registeruser']);
-Route::get('/logout', [MainController::class, 'logout']);
+Route::get('/', [MainController::class, 'indexhome'])->name('home');
+Route::get('/login', [MainController::class, 'loginPage'])->name('login_page');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/registeruser', [AuthController::class, 'registeruser'])->name('register');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/profile', [MainController::class, 'profile'])->middleware('security');
+Route::get('/google',[AuthController::class,'redirectToGoogle'])->name('google_login');
+Route::get('/authorized/google/callback',[AuthController::class,'GoogleRedirect']);
+
 
 /* Main Pages */
 Route::get('/travelpack', [MainController::class, 'indextravel']);

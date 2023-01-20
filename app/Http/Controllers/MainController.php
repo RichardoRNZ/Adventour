@@ -39,55 +39,8 @@ class MainController extends Controller
         return view('login');
     }
 
-    public function login(Request $request) {
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
 
-        if($request->remember) {
-            Cookie::queue('mycookie', $request->email, 120);
-        }
 
-        if(Auth::attempt($credentials, true)){
-            Session::put('mysession','');
-            if(Auth::user()->role == 'admin') {
-                return redirect('/');
-            } return redirect('/');
-        }
-        return redirect('/login');
-    }
-
-    public function registerPage() {
-        return view('register');
-    }
-
-    public function registeruser(Request $request) {
-        $rules = [
-            'name' => 'required|string|min:5|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|alpha_num',
-        ];
-
-        $validator = Validator::make($request->all(), $rules);
-
-        if($validator->fails()) {
-            return view('register')->with($validator);
-        }
-
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
-
-        return redirect('/');
-    }
-
-    public function logout() {
-        Auth::logout();
-        return redirect('/login');
-    }
 
     public function indextravel() {
         $tours = Tour::all();

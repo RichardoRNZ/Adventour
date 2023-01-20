@@ -7,7 +7,7 @@
         );
     }
 nav, footer{
-    background-color: #030301;
+    background-color: #191923;
 }
 body{
     background-color: #FFFFF3;
@@ -94,6 +94,7 @@ body{
 .profile-menu-link:hover p{
     font-weight: 600;
 }
+
 .box1{
     height: 500px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url('../images/travel.jpg') ;
