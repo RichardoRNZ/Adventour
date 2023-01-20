@@ -4,7 +4,7 @@
    <section class="travel-pack">
     <div class="travel-container">
         <div class="jumbotron bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white">
-                <h1 class="mb-3 h2">Travel Arround The World With Adventour</h1>
+                <h1 class="mt-3 h2">Travel Arround The World With Adventour</h1>
             </div>
             <div class="row">
                 @foreach ($tours as $tour)
