@@ -19,8 +19,8 @@ class CreateRestaurantsTable extends Migration
             $table->unsignedBigInteger('country_id');
             $table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade')->onDelete('cascade');
             $table->string('city');
-            $table->string('description');
-            $table->string('image');
+            $table->text('description');
+            $table->text('image');
             $table->timestamps();
         });
     }

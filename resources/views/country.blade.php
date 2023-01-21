@@ -1,35 +1,41 @@
-@include('header')
+@extends('Components.main')
+@section('content')
+    <!-- Jumbotron -->
+   <section class="travel-pack">
+    <div class="travel-container">
+        @foreach ($country as $Country)
 
-<?php
-use App\Models\Tour;
-$t = Tour::where('tours.country_id', '=', $country->id)->get();
-?>
+        <div class="jumbotron-country bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white">
 
-<div class="center1">
-<div class="text1">
-    <h3>{{$country->name}}</h3>
-</div> 
 
-<div class="text2"> 
-<div class="row row-cols-4 row-cols-md-5 g-4">
-@foreach($t as $tour)
-<div class="col">  
-    <div class="card" style="width: 100%; height: 100%;">
-      <img src="{{Storage::url($tour->image)}}" class="card-img-top" height="150px" width="150px" alt="Card image cap">
-      <div class="card-body d-flex flex-column">
-      <h5 class="card-title">{{$tour->name}}</h5>
-      <p class="card-text">{{$tour->description}}</p>
-      
-      <a href="{{route('tour.detail',$tour->id)}}" class="btn btn-primary mt-auto">Detail</a>
-        
-      </div>
+                <h1 class="mt-3 h2 text-uppercase">{{$Country->name}}</h1>
+            </div>
+            <div class="row">
+                @foreach ($Country->tours as $tour)
+
+
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="product-card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{$tour->image}}" alt="Card image cap">
+                        <div class="card-body">
+                            <div class="product-title">
+                                <h4>{{$tour->name}}</h4>
+                            </div>
+                            <h5 class="product-price">IDR. {{$tour->price}}</h5>
+
+                            <div class="detail-button">
+                                <a href="{{route('tour.detail',$tour->id)}}">Detail Product</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @endforeach
+            </div>
+            {{-- <div class="pagination">
+                {{ $tours->links() }}
+            </div> --}}
     </div>
-  </div>
-@endforeach
-</div>
-</div>
-
-</div>
-
-</body>
-</html>
+   </section>
+    <!-- Jumbotron -->
+@endsection

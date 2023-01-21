@@ -49,18 +49,20 @@ class MainController extends Controller
     }
 
     public function redirectDetail($id) {
-        $tour = Tour::findOrFail($id);
+        $tour = Tour::where('id',$id)->get();
         return view('detail', compact('tour'));
     }
 
-    public function list($id){
-        $country = Country::findOrFail($id);
+    public function list(Request $request){
+        $country = Country::where('id', $request->id)->get();
         return view('country', compact('country'));
+        // dd($request->id);
     }
 
     public function searchpack(Request $request) {
-        $tours = Tour::where('name', 'LIKE', "%$request->search%")->get();
-        return view('searchpack')->with('tours', $tours);
+        $search = $request->search;
+        $tours = Tour::where('name', 'LIKE', "%$search%")->paginate(12);
+        return view('searchpack', compact('search','tours'));
     }
 
     public function viewHistory(){
@@ -72,4 +74,5 @@ class MainController extends Controller
         $countries = Country::with('tours')->has('tours')->get();
         return $countries;
     }
+
 }

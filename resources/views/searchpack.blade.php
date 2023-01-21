@@ -1,37 +1,39 @@
-@include('header')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Packages</title>
-</head>
-<body>
-<h3>Search Result</h3>
+@extends('Components.main')
+@section('content')
+    <!-- Jumbotron -->
+   <section class="travel-pack">
+    <div class="travel-container">
+        <div class="jumbotron bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white">
+                <h1 class="mt-3 h2">Travel Arround The World With Adventour</h1>
+            </div>
+            <div class="row">
+                <div class="result">
+                    <h3>Search result for : {{$search}}</h3>
+                </div>
+                @foreach ($tours as $tour)
 
-<form action="/searchpack" class="col-5">
-<div class="d-flex">
-<input type="search" class="form-control" name="search" id="search" placeholder="Package Name">
-<button class="btn btn-primary" type="submit">Search</button>
-</div>
-</form>
 
-<div class="row row-cols-4 row-cols-md-5 g-4">
-@foreach($tours as $tour)
-<div class="col">
-    <div class="card" style="width: 100%; height: 100%;">
-      <img src="{{Storage::url($tour->image)}}" class="card-img-top" height="150px" width="150px" alt="Card image cap">
-      <div class="card-body d-flex flex-column">
-      <h5 class="card-title">{{$tour->name}}</h5>
-      <p class="card-text">{{$tour->description}}</p>
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="product-card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{$tour->image}}" alt="Card image cap">
+                        <div class="card-body">
+                            <div class="product-title">
+                                <h4>{{$tour->name}}</h4>
+                            </div>
+                            <h5 class="product-price">IDR. {{$tour->price}}</h5>
 
-      <a href="{{route('tour.detail',$tour->id)}}" class="btn btn-primary mt-auto">Detail</a>
-
-      </div>
+                            <div class="detail-button">
+                                <a href="{{route('tour.detail',$tour->id)}}">Detail Product</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <div class="pagination">
+                {{ $tours->links() }}
+            </div>
     </div>
-  </div>
-@endforeach
-</div>
-</body>
-</html>
+   </section>
+    <!-- Jumbotron -->
+@endsection

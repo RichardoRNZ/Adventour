@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
     use HasFactory;
+    protected $table = 'countries';
     protected $fillable = ['name', 'code'];
 
     public function tours() {
-        return $this->hasMany(related: Tour::class);
+        return $this->hasMany(Tour::class,'country_id','id');
     }
 
     public function hotels() {

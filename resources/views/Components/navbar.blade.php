@@ -33,7 +33,7 @@ $countries = MainController::getAllCountry();
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         @foreach ($countries as $country)
                             <li>
-                                <a class="dropdown-item" href="#">{{ $country->name }}</a>
+                                <a class="dropdown-item" href="{{route('country.list', ['id'=>$country->id])}}">{{ $country->name }}</a>
                             </li>
                         @endforeach
 
@@ -54,9 +54,9 @@ $countries = MainController::getAllCountry();
         <!-- Collapsible wrapper -->
 
         <!-- Right elements -->
-        <form class="d-flex input-group w-auto">
+        <form class="d-flex input-group w-auto" action="{{route('search')}}" method="GET">
             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                aria-describedby="search-addon" id="form1" />
+                aria-describedby="search-addon" id="form1" name="search"/>
             <span class="input-group-text text-white border-0" id="search-addon">
                 <i class="fas fa-search"></i>
             </span>
@@ -135,6 +135,10 @@ $countries = MainController::getAllCountry();
                     </div>
                 </div>
             </div>
+            @else
+            <a href="{{route('login_page')}}" type="button" class="btn px-3 me-2 text-white">
+                Login
+              </a>
         @endauth
 
 

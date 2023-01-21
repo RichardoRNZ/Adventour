@@ -11,7 +11,7 @@ class Tour extends Model
     protected $fillable = ['name', 'country_id', 'hotel_id', 'restaurant_id', 'description', 'price', 'image'];
 
     public function tourdetails() {
-        return $this->hasMany(related: Tourdetail::class);
+        return $this->hasMany(Tourdetail::class,'tour_id','id');
     }
 
     public function countries() {

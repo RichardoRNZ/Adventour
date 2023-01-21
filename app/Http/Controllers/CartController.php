@@ -41,7 +41,7 @@ class CartController extends Controller
         // $cart->tour_id = $request->tour_id;
         // $cart->quantity = $request->quantity;
         // $cart->save();
-        $id = $request->tour_id;
+        $id = $request->id;
         $cart = session("cart");
         $item = Tour::where('id',$id)->first();
 
@@ -54,7 +54,7 @@ class CartController extends Controller
         ];
         session(["cart" =>$cart]);
 
-        return redirect('cart');
+       return redirect()->route('cart-view');
     }
     public function viewCart() {
         $cart = session("cart");

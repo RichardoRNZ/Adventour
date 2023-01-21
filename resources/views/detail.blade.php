@@ -1,83 +1,117 @@
 @extends('Components.main')
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour Detail Package</title>
-</head>
-<body>
 
-<?php
-use App\Models\Tourdetail;
-$tourdetails = Tourdetail::where('tour_id', '=', $tour->id)->get();
-?>
+    <body id="detail-page">
+        <section class="travel-detail">
+            <div class="detail-container">
+                @foreach ($tour as $t)
+                    <div class="jumbotron bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white">
+                        <h1 class="mt-3 h2">{{ $t->name }}</h1>
+                        <p>{{ $t->description }}</p>
+                    </div>
 
-<div class = "text2">
-<img class="img-top" src="{{Storage::url($tour->image)}}" height="350px" width="350px">
-<h3>{{$tour->name}}</h3>
-<p>Description: {{$tour->description}}</p>
-<p>Price: Rp {{$tour->price}}</p>
+                    <div class="card mb-8">
+                        <div class="row g-0">
+                            <div class="col-md-8">
+                                <div class="card-body" id="long-card-body">
+                                    <h5 class="card-title" id="long-card-title">{{ $t->hotels->name }}</h5>
+                                    <p class="card-text" id="long-card-text">
+                                        {{ $t->hotels->description }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <img src="{{ $t->hotels->image }}" alt="Trendy Pants and Shoes"
+                                    class="img-fluid rounded-start" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-8">
+                        <div class="row g-0">
+                            <div class="col-md-8">
+                                <div class="card-body" id="long-card-body">
+                                    <h5 class="card-title" id="long-card-title">{{ $t->restaurants->name }}</h5>
+                                    <p class="card-text" id="long-card-text">
+                                        {{ $t->restaurants->description }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <img src="{{ $t->restaurants->image }}" alt="Trendy Pants and Shoes"
+                                    class="img-fluid rounded-start" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        @foreach ($t->tourdetails as $detail)
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="{{ $detail->image }}" class="card-img-top" alt="Hollywood Sign on The Hill"
+                                        id="place-card" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $detail->name }}</h5>
+                                        <p class="card-text">
+                                            {{ $detail->description }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    @auth
+                    @if (Auth::user()->role == 'customer')
+                        <!-- Button trigger modal -->
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn" data-mdb-toggle="modal" data-mdb-target="#exampleModal" id="booking-button">
+                            Book Now
+                        </button>
 
-<div class="hotel">
-<img class="img-top" src="{{Storage::url($tour->hotels->image)}}" height="350px" width="350px">
-<h3>{{$tour->hotels->name}}</h3>
-<p>City: {{$tour->hotels->city}}</p>
-<p>Description: {{$tour->hotels->description}}</p>
-</div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content ">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Booking Confirmation</h5>
+                                        <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{route('add-to-cart')}}" method="get">
+                                            @csrf
+                                        <div class="detail-tour">
+                                            <label for="">Tour Pack A</label>
+                                            <img src="{{$t->image}}" alt="">
 
-<div class="restaurant">
-<img class="img-top" src="{{Storage::url($tour->restaurants->image)}}" height="350px" width="350px">
-<h3>{{$tour->restaurants->name}}</h3>
-<p>City: {{$tour->restaurants->city}}</p>
-<p>Description: {{$tour->restaurants->description}}</p>
-</div>
-
-<h3>Places to Visit</h3>
-
-<div class="row row-cols-4 row-cols-md-5 g-4">
-@foreach($tourdetails as $tourdetail)
-<div class="col">
-    <div class="card" style="width: 100%; height: 100%;">
-      <img src="{{Storage::url($tourdetail->image)}}" class="card-img-top" height="150px" width="150px" alt="Card image cap">
-      <div class="card-body d-flex flex-column">
-      <h5 class="card-title">{{$tourdetail->name}}</h5>
-      <p class="card-text">{{$tourdetail->description}}</p>
-
-      </div>
-    </div>
-  </div>
-@endforeach
-</div>
+                                        </div>
+                                            <div class="form-info">
+                                                Number of Ticket
+                                            </div>
+                                          <div class="quantity">
+                                            <label for="">IDR 2991667/pack</label>
+                                            <span id="plus" class="btn" onclick="IncreaseItem()">+</span>
+                                            <input type="number" name="quantity" id="quantity" value="1">
+                                            <span id="minus" class="btn" onclick="DecreaseItem()">-</span>
+                                            <input type="hidden" name="id" value="{{$t->id}}">
+                                          </div>
 
 
-@auth
-@if(Auth::check() == true)
-<form action="/cartadd" method="POST" enctype="multipart/form-data">
-@csrf
-<input type="hidden" class="user_id" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
-<input type="hidden" class="tour_id" name="tour_id" id="tour_id" value="{{ $tour->id }}">
-<div class="form-group">
-              <label for="quantity">Quantity</label>
-              <input type="number" class="form-control" name="quantity" id="quantity">
-</div>
-    <button class="btn btn-primary">Book Now</button>
-</form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                                        <button class="btn" id="submit-btn">Save changes</button>
+                                    </div>
+                                </form>
 
-<div class="error-msg">
-@if($errors->any())
-    <strong>{{$errors->first()}}</strong>
-@endif
-</div>
 
-@endif
-@else
-<br>
-@endif
-</div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endauth
+                @endforeach
 
-</body>
-</html>
+            </div>
+        </section>
+    </body>
 @endsection

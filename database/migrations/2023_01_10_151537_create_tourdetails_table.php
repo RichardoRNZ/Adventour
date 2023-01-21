@@ -18,8 +18,8 @@ class CreateTourdetailsTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('tour_id');
             $table->foreign('tour_id')->references('id')->on('tours')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('description');
-            $table->string('image');
+            $table->text('description');
+            $table->text('image');
             $table->timestamps();
         });
     }

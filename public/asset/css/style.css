@@ -13,6 +13,8 @@
 body{
     background-color: #FBFEF9;
     min-height: 100vh;
+    max-width: 200vh;
+
 }
 .icon{
     color: #fff;
@@ -103,13 +105,11 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    width: 210vh;
 
 
 }
-.box1 img{
-    background-size: cover;
-   max-height: 800px;
-}
+
 
 .float {
     position: absolute;
@@ -365,12 +365,16 @@ body{
 }
 .form-row,.package-detail{
     display: flex;
+    flex-direction: row;
     width: 90%;
     margin: 0 auto;
+    flex-wrap: nowrap;
 }
+
 .card-content input, .card-content select{
     display: block;
     width: 100%;
+
     margin: 15px 12px;
     padding: 5px;
     font-size: 15px;
@@ -453,6 +457,12 @@ body{
     height: 200px;
     width: 105%;
 }
+.jumbotron-country{
+    margin-top: 50px;
+    background-image: url('../images/country.png');
+    height: 200px;
+    width: 105%;
+}
 .travel-pack{
     padding-bottom: 80px;
 
@@ -520,10 +530,6 @@ body{
     letter-spacing: 1px;
     text-decoration: none;
     background: var(--main-color);
-    /* background: #485665; */
-    /* blue :#18206F*/
-    /* pruple : #485665
-    dark : #1E3231 */
 
     transition: transform 80ms ease-in;
     padding: 12px;
@@ -546,8 +552,96 @@ body{
 .detail-button:focus{
    outline: none;
 }
+.result{
+    padding-left: 40px;
+}
+.result h3{
+    color: #191923;
 
 
+}
+#detail-page{
+    height: 300vh;
+
+}
+.detail-container .card{
+    max-width: 1200px;
+    height: 367px;
+    margin-left: 20px;
+    box-shadow: 0 6px 20px 0  rgba(0, 0, 0, 0.19);
+    color: #191923;
+
+
+}
+.detail-container .card .img-fluid{
+    height: 367px;
+
+
+}
+#long-card-title{
+    font-size: 45px;
+}
+#long-card-text{
+    font-size: 25px;
+}
+#long-card-body{
+    padding: 40px;
+}
+#place-card{
+    height: 225px;
+}
+.detail-tour label, .form-info{
+    font-size: 20px;
+    font-weight: 400;
+    color: #191923;
+}
+.detail-tour img{
+    width: 20%;
+}
+.form-info{
+    margin-bottom: 20px;
+
+}
+
+.quantity label{
+   margin-right: 200px;
+   font-size: 17px;
+   color: var(--main-color);
+   font-weight: 500;
+}
+.quantity span{
+    background-color: #fff;
+    padding: 7px;
+    color: var(--main-color);
+    margin-left: 2px;
+    font-size: 20px;
+
+    font-weight: 700;
+
+
+}
+#booking-button{
+    margin-left: 25px;
+    margin-top: 30px;
+    background-color: var(--main-color);
+    color: #fff;
+}
+#booking-button:hover, #submit-btn:hov{
+    color: var(--secondary-color);
+    border: 2px solid var(--main-color);
+    background: #fff;
+}
+#submit-btn{
+    background-color: var(--main-color);
+    color: #fff;
+}
+.quantity input{
+    width: 40px;
+    background-color: #fff;
+    border: none;
+    color: var(--main-color);
+    text-align: center;
+}
 @media(max-width : 992px)
 {
     .card-container{
