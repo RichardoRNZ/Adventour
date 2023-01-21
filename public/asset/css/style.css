@@ -453,13 +453,26 @@ body{
 }
 .jumbotron{
     margin-top: 50px;
+
     background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/003.webp');
     height: 200px;
     width: 105%;
 }
 .jumbotron-country{
     margin-top: 50px;
-    background-image: url('../images/country.png');
+    background:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url('../images/country.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 200px;
+    width: 105%;
+}
+.jumbotron-detail{
+    margin-top: 50px;
+    background:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url('../images/detail_sample.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     height: 200px;
     width: 105%;
 }

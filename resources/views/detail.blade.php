@@ -5,7 +5,7 @@
         <section class="travel-detail">
             <div class="detail-container">
                 @foreach ($tour as $t)
-                    <div class="jumbotron bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white">
+                    <div class="jumbotron-detail bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white">
                         <h1 class="mt-3 h2">{{ $t->name }}</h1>
                         <p>{{ $t->description }}</p>
                     </div>
@@ -88,7 +88,7 @@
                                                 Number of Ticket
                                             </div>
                                           <div class="quantity">
-                                            <label for="">IDR 2991667/pack</label>
+                                            <label for="">IDR {{$t->price}}/pack</label>
                                             <span id="plus" class="btn" onclick="IncreaseItem()">+</span>
                                             <input type="number" name="quantity" id="quantity" value="1">
                                             <span id="minus" class="btn" onclick="DecreaseItem()">-</span>
