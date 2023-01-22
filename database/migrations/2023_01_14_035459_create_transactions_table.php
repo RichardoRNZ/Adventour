@@ -15,6 +15,7 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->string('booking_code');
             $table->string('customer_name');
             $table->integer('phone');
             $table->date('booking_date');

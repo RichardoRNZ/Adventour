@@ -20,22 +20,27 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function indexhome() {
+        session()->forget("cart");
         return view('home');
     }
 
     public function profile() {
+        session()->forget("cart");
         return view('profile');
     }
 
     public function about() {
+        session()->forget("cart");
         return view('about');
     }
 
     public function contact() {
+        session()->forget("cart");
         return view('contact');
     }
 
     public function loginPage() {
+        session()->forget("cart");
         return view('login');
     }
 
@@ -49,24 +54,43 @@ class MainController extends Controller
     }
 
     public function redirectDetail($id) {
+        session()->forget("cart");
         $tour = Tour::where('id',$id)->get();
         return view('detail', compact('tour'));
     }
 
     public function list(Request $request){
+        session()->forget("cart");
         $country = Country::where('id', $request->id)->get();
         return view('country', compact('country'));
         // dd($request->id);
     }
 
     public function searchpack(Request $request) {
+        session()->forget("cart");
         $search = $request->search;
         $tours = Tour::where('name', 'LIKE', "%$search%")->paginate(12);
         return view('searchpack', compact('search','tours'));
     }
 
     public function viewHistory(){
-        $items = Transactionheader::where('user_id', Auth::id())->get();
+        session()->forget("cart");
+        $items = Transactionheader::where('user_id', Auth::id())
+        ->join('detail_transactions', 'header_id', '=', 'transactionheaders.id')
+        ->get();
+        return view('history', compact('items'));
+    }
+    public function filterHistory(Request $request)
+    {
+        $items = Transactionheader::where('user_id', Auth::id())
+        ->join('transactions', 'transaction_id', '=', 'transactions.id')
+        ->join('detail_transactions', 'header_id', '=', 'transactionheaders.id')
+        ->orderBy("$request->filter", "$request->sort")
+        ->get();
+        if(isset($_GET['reset']))
+        {
+            return redirect()->route('history');
+        }
         return view('history', compact('items'));
     }
     public static function getAllCountry()

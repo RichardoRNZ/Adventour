@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CartController extends Controller
 {
@@ -73,9 +74,10 @@ class CartController extends Controller
     public function transaction(Request $request) {
         $cartitems = session("cart");
 
-
+        $random = Str::random(10);
 
         $transaction = new Transaction();
+        $transaction->booking_code = $random;
         $transaction->customer_name = $request->gender.". ".$request->name;
         $transaction->phone = $request->phone;
         $transaction->booking_date = $request->date;

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
-    protected $fillable = ['customer_name','phone', 'booking_date'];
+    protected $fillable = ['customer_name','phone', 'booking_date','booking_code'];
 
     public function tours() {
         return $this->belongsTo(Tour::class, 'tour_id', 'id');

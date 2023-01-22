@@ -14,4 +14,8 @@ class DetailTransaction extends Model
         $transaction = Transactionheader::latest()->first();
         return $transaction;
     }
+    public function getTour()
+    {
+        return $this->belongsTo(Tour::class,'tour_id','id');
+    }
 }

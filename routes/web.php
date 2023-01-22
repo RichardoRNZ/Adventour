@@ -41,4 +41,5 @@ Route::get('/cart', [CartController::class, 'viewCart'])->name('cart-view')->mid
 Route::get('/cartadd', [CartController::class, 'cartadd'])->name('add-to-cart')->middleware('security');
 Route::get('/destroy', [CartController::class, 'destroyitem'])->name('delete-item')->middleware('security');
 Route::post('/transaction', [CartController::class, 'transaction'])->middleware('security')->name('transaction');
-Route::get('/history', [MainController::class, 'viewHistory'])->middleware('security');
+Route::get('/history', [MainController::class, 'viewHistory'])->name('history')->middleware('security');
+Route::get('/filter',[MainController::class,'filterHistory'])->name('filter');
