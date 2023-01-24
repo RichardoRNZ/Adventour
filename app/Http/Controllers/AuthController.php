@@ -66,7 +66,7 @@ class AuthController extends Controller
         if(Auth::attempt($credentials, true)){
             Session::put('mysession','');
             if(Auth::user()->role == 'admin') {
-                return redirect('/');
+                return redirect()->route('dashboard');
             } return redirect()->route('home');
         }
         return redirect()->back();
@@ -81,11 +81,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|alpha_num',
         ];
 
-        $validator = Validator::make($request->all(), $rules);
-
-        if($validator->fails()) {
-            return view('register')->with($validator);
-        }
+       $request->validate($rules);
 
         $user = new User();
         $user->name = $request->name;
@@ -93,7 +89,7 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('home');
+       return $this->login($request);
     }
     public function logout() {
         Auth::logout();

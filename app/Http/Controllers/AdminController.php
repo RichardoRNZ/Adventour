@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
+use App\Models\DetailTransaction;
 use App\Models\Hotel;
 use App\Models\Restaurant;
 use App\Models\Tour;
 use App\Models\Tourdetail;
+use App\Models\Transaction;
+use App\Models\Transactionheader;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,6 +19,40 @@ class AdminController extends Controller
     public function index()
     {
         // home page admin
+        return view('admin-page.dashboard');
+    }
+    public function manageHotel()
+    {
+        $hotels = Hotel::all();
+        return view('admin-page.manage-hotels', compact('hotels'));
+    }
+    public function manageTour()
+    {
+        $packs = Tour::all();
+        return view('admin-page.manage-tour',compact('packs'));
+    }
+    public function manageDestination(Request $request)
+    {
+        $destination = Tourdetail::where('tour_id',$request->id)->get();
+        return view('admin-page.manage-destination', compact('destination'));
+    }
+    public function manageRestaurant()
+    {
+        $restaurants = Restaurant::all();
+        return view('admin-page.manage-restaurants',compact('restaurants'));
+    }
+
+    public function viewAllCustomer()
+    {
+        $customers = User::where('role', 'customer')->get();
+        return view('admin-page.view-customer',compact('customers'));
+    }
+    public function viewAllTransaction()
+    {
+        $transactions = Transactionheader::join('transactions', 'transaction_id', '=', 'transactions.id')
+        ->join('detail_transactions', 'header_id', '=', 'transactionheaders.id')
+        ->get();
+        return view('admin-page.view-transaction', compact('transactions'));
     }
     public function addNewHotel(Request $request)
     {
@@ -24,16 +63,18 @@ class AdminController extends Controller
         $hotel->description = $request->hotel_description;
         $hotel->image = $this->newImage($request);
         $hotel->save();
+        return redirect()->back();
     }
     public function addNewRestaurant(Request $request)
     {
         $restaurant = new Restaurant();
-        $restaurant->name = $request->hotel_name;
+        $restaurant->name = $request->restaurant_name;
         $restaurant->country_id = $request->country_id;
-        $restaurant->city = $request->hotel_city;
-        $restaurant->description = $request->hotel_description;
+        $restaurant->city = $request->restaurant_city;
+        $restaurant->description = $request->restaurant_description;
         $restaurant->image = $this->newImage($request);
         $restaurant->save();
+        return redirect()->back();
 
     }
     public function addNewTourPacket(Request $request)
@@ -48,19 +89,22 @@ class AdminController extends Controller
         $tour->image = $this->newImage($request);
         $tour->save();
 
+        return redirect()->route('tours');
+
     }
     public function addNewTourDetail(Request $request)
     {
         $tours = new Tourdetail();
-        $tours->name = $request->tour_detail_name;
+        $tours->name = $request->name;
         $tours->tour_id = $request->tour_id;
-        $tours->description = $request->tour_detail_description;
+        $tours->description = $request->description;
         $tours->image = $this->newImage($request);
         $tours->save();
+        return redirect()->back();
     }
     public function EditTour(Request $request)
     {
-        $tour = Tour::where('id',$request->id)->get();
+        $tour = Tour::find($request->id);
         $tour->name = $request->tour_name;
         $tour->country_id = $request->country_id;
         $tour->hotel_id = $request->hotel_id;
@@ -69,36 +113,43 @@ class AdminController extends Controller
         $tour->price = $request->tour_price;
         $tour->image = $this->newImage($request);
         $tour->update();
+        return redirect()->back();
     }
     public function EditTourDetail(Request $request)
     {
-        $tours = Tourdetail::where('id',$request->id);
-        $tours->name = $request->tour_detail_name;
+        $tours = Tourdetail::find($request->id);
+        $tours->name = $request->name;
+        // echo $request->name;
         $tours->tour_id = $request->tour_id;
-        $tours->description = $request->tour_detail_description;
+        $tours->description = $request->description;
         $tours->image = $this->newImage($request);
         $tours->update();
+
+        return redirect()->back();
 
     }
     public function EditHotel(Request $request)
     {
-        $hotel = Hotel::where('id',$request->id);
+        $hotel = Hotel::find($request->id);
         $hotel->name = $request->hotel_name;
         $hotel->country_id = $request->country_id;
         $hotel->city = $request->hotel_city;
         $hotel->description = $request->hotel_description;
         $hotel->image = $this->newImage($request);
         $hotel->update();
+        return redirect()->back();
+
     }
     public function EditRestaurant(Request $request)
     {
-        $restaurant = Restaurant::where('id', $request->id);
-        $restaurant->name = $request->hotel_name;
+        $restaurant = Restaurant::find($request->id);
+        $restaurant->name = $request->restaurant_name;
         $restaurant->country_id = $request->country_id;
-        $restaurant->city = $request->hotel_city;
-        $restaurant->description = $request->hotel_description;
+        $restaurant->city = $request->restaurant_city;
+        $restaurant->description = $request->restaurant_description;
         $restaurant->image = $this->newImage($request);
         $restaurant->update();
+        return redirect()->back();
     }
     public function deleteTour(Request $request)
     {
@@ -117,7 +168,7 @@ class AdminController extends Controller
     }
     public function deleteRestaurant(Request $request)
     {
-        Tour::where('id', $request->id)->delete();
+        Restaurant::where('id', $request->id)->delete();
         return redirect()->back();
     }
 
@@ -129,5 +180,35 @@ class AdminController extends Controller
         $new_file_name = $name . time() . '.' .$ext;
         $fileObj->storeAs('public/images', $new_file_name);
         return $new_file_name;
+    }
+    public static function countUser()
+    {
+        $count = User::where('role', 'customer')->count();
+        return $count;
+    }
+    public static function countPack()
+    {
+        $count = Tour::all()->count();
+        return $count;
+    }
+    public static function countHotel()
+    {
+        $count = Hotel::all()->count();
+        return $count;
+    }
+    public static function countRestaurant()
+    {
+        $count = Restaurant::all()->count();
+        return $count;
+    }
+    public static function countTransaction()
+    {
+        $count = Transaction::all()->count();
+        return $count;
+    }
+    public static function countCountry()
+    {
+        $count = Country::all()->count();
+        return $count;
     }
 }

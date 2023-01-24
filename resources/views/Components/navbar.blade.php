@@ -1,7 +1,9 @@
-<?php
-use App\Http\Controllers\MainController;
+@php
+   use App\Http\Controllers\MainController;
 $countries = MainController::getAllCountry();
-?>
+@endphp
+
+
 
 
 <!-- Navbar -->

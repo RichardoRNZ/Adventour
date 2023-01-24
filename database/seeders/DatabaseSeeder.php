@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             HotelSeeder::class,
             RestaurantSeeder::class,
             TourSeeder::class,
-            TourdetailSeeder::class
+            TourdetailSeeder::class,
+            UserSeeder::class
         ]);
     }
 }

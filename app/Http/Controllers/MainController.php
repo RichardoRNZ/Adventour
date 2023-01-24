@@ -98,5 +98,30 @@ class MainController extends Controller
         $countries = Country::with('tours')->has('tours')->get();
         return $countries;
     }
+    public static function getCountries()
+    {
+        $countries = Country::all();
+        return $countries;
+    }
+    public static function getHotel()
+    {
+        $hotels = Hotel::all();
+        return $hotels;
+    }
+    public static function getRestaurant()
+    {
+        $restaurants = Restaurant::all();
+        return $restaurants;
+    }
+    public static function getTourPack()
+    {
+        $tours = Tour::all();
+        return $tours;
+    }
+    public static function getTourPackById($id)
+    {
+        $tour = Tour::where('id',$id)->get();
+        return $tour;
+    }
 
 }

@@ -26,14 +26,17 @@
     <!-- MDB -->
     <link rel="stylesheet" href="{{asset('asset/css/mdb.min.css')}}" />
     <link rel="stylesheet" href="{{asset('asset/css/style.css')}}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
   </head>
   <body>
     <!-- Start your project here-->
         @include('Components.navbar')
         @yield('content')
         @include('Components.footer')
+
     <script type="text/javascript" src="{{asset('asset/js/mdb.min.js')}}"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="{{asset('asset/js/main.js')}}"></script>
+
   </body>
 </html>

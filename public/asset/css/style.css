@@ -639,7 +639,7 @@ body{
     background-color: var(--main-color);
     color: #fff;
 }
-#booking-button:hover, #submit-btn:hov{
+#booking-button:hover, #submit-btn:hover{
     color: var(--secondary-color);
     border: 2px solid var(--main-color);
     background: #fff;
@@ -692,6 +692,131 @@ body{
 .transaction-history .card-header{
     font-size: 30px;
 }
+.sidebar {
+
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    margin-top: 50px;
+    z-index: 10;
+  }
+
+  /* Sidebar links */
+  .sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+  }
+
+  /* Active/current link */
+  .sidebar a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  /* Links on mouse-over */
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
+  /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+
+
+  /* On screens that are less than 700px wide, make the sidebar into a topbar */
+
+  #admin-content{
+    margin-left: 250px;
+    padding: 1px 16px;
+    padding-top: 70px;
+
+  }
+  .card-body-icon{
+    position: absolute;
+    z-index: 0;
+    top: 25px;
+    right: 4px;
+    opacity: 0.4;
+    font-size: 90px;
+}
+    .item-table{
+        margin-bottom: 10%;
+    }
+    .manage-hotels .btn{
+        background-color: var(--main-color);
+        color: #fff;
+    }
+    .manage-hotels .btn:hover{
+        color: var(--secondary-color);
+        border: 2px solid var(--main-color);
+        background: #fff;
+    }
+
+
+    .modal-form .form-group{
+
+        display: flex;
+       justify-content: space-between;
+        padding-bottom: 20px;
+
+    }
+
+    #item-image{
+        width: 20%;
+    }
+
+
+    .modal-form .form-floating{
+        width: 30%;
+
+    }
+
+
+    .manage-hotels .modal-form{
+        padding: 2vh 0;
+    }
+    .modal-form .form-outline{
+
+        outline: none;
+        padding: 1vh;
+        width: 100%;
+        margin-bottom: 30px;
+
+    }
+    .modal-form .file-label{
+        display: block;
+    }
+    #without-group{
+        width: 100%;
+        padding-bottom: 20px;
+    }
+    .form-outline label{
+        text-transform: capitalize;
+    }
+
+  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {
+        float: left;
+
+    }
+    #admin-content {margin-left: 0;}
+  }
 @media(max-width : 992px)
 {
     .card-container{
