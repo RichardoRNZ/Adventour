@@ -22,9 +22,9 @@
                         </div>
                         <h5 class="card-title">Users</h5>
                         <div class="display-4">
-                            {{$user}}
+                            {{ $user }}
                         </div>
-                        <a href="{{route('customers')}}">
+                        <a href="{{ route('customers') }}">
                             <p class="card-text text-white">View Detail</p>
                         </a>
 
@@ -40,9 +40,9 @@
                         </div>
                         <h5 class="card-title">Travel Pack</h5>
                         <div class="display-4">
-                            {{$pack}}
+                            {{ $pack }}
                         </div>
-                        <a href="{{route('tours')}}">
+                        <a href="{{ route('tours') }}">
                             <p class="card-text text-white">View Detail</p>
                         </a>
 
@@ -56,9 +56,9 @@
                         </div>
                         <h5 class="card-title">Hotel Patners</h5>
                         <div class="display-4">
-                            {{$hotel}}
+                            {{ $hotel }}
                         </div>
-                        <a href="{{route('hotels')}}">
+                        <a href="{{ route('hotels') }}">
                             <p class="card-text text-white">View Detail</p>
                         </a>
 
@@ -74,9 +74,9 @@
                         </div>
                         <h5 class="card-title">Restaurant Patners</h5>
                         <div class="display-4">
-                            {{$restaurant}}
+                            {{ $restaurant }}
                         </div>
-                        <a href="{{route('view-restaurant')}}">
+                        <a href="{{ route('view-restaurant') }}">
                             <p class="card-text text-white">View Detail</p>
                         </a>
 
@@ -92,9 +92,9 @@
                         </div>
                         <h5 class="card-title">Transactions</h5>
                         <div class="display-4">
-                            {{$transaction}}
+                            {{ $transaction }}
                         </div>
-                        <a href="{{route('view-transactions')}}">
+                        <a href="{{ route('view-transactions') }}">
                             <p class="card-text text-white">View Detail</p>
                         </a>
 
@@ -108,7 +108,7 @@
                         </div>
                         <h5 class="card-title">Countries</h5>
                         <div class="display-4">
-                            {{$country}}
+                            {{ $country }}
                         </div>
 
 

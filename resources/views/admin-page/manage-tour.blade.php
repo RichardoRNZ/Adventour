@@ -85,7 +85,7 @@
                                 <div class="form-floating">
 
                                     <select class="form-select" id="floatingSelectGrid"
-                                        aria-label="Floating label select example" name="country_id">
+                                        aria-label="Floating label select example" name="country_id" required>
                                         <option disabled selected></option>
                                         @foreach ($countries as $country)
                                             <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -96,7 +96,7 @@
                                 <div class="form-floating">
 
                                     <select class="form-select" id="floatingSelectGrid"
-                                        aria-label="Floating label select example" name="hotel_id">
+                                        aria-label="Floating label select example" name="hotel_id" required>
                                         <option disabled selected></option>
                                         @foreach ($hotels as $hotel)
                                             <option value="{{ $hotel->id }}">{{ $hotel->name }}</option>
@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="form-floating">
 
-                                    <select class="form-select" id="floatingSelectGrid"
+                                    <select class="form-select" id="floatingSelectGrid" required
                                         aria-label="Floating label select example" name="restaurant_id">
                                         <option disabled selected></option>
                                         @foreach ($restaurants as $restaurant)
@@ -118,19 +118,19 @@
 
                             </div>
                             <div class="form-outline">
-                                <input type="text" id="form12" class="form-control" name="tour_name" />
+                                <input type="text" id="form12" class="form-control" name="tour_name" required />
                                 <label class="form-label" for="form12">Tour Pack Name</label>
                             </div>
                             <div class="form-outline">
-                                <input type="number" id="form12" class="form-control" name="tour_price" />
+                                <input type="number" id="form12" class="form-control" name="tour_price" required />
                                 <label class="form-label" for="form12">Price</label>
                             </div>
                             <div class="form-outline">
-                                <textarea class="form-control" id="textAreaExample" rows="4" name="tour_description"></textarea>
+                                <textarea class="form-control" id="textAreaExample" rows="4" name="tour_description" required></textarea>
                                 <label class="form-label" for="textAreaExample">Tour Pack Description</label>
                             </div>
                             <label for="image" class="file-label">Image File Upload</label>
-                            <input type="file" name="image" id="">
+                            <input type="file" name="image" id="" required>
 
                     </div>
                     <div class="modal-footer">
@@ -159,7 +159,8 @@
                                 <div class="form-floating">
 
                                     <select class="form-select" id="floatingSelectGrid"
-                                        aria-label="Floating label select example" name="country_id" id="country">
+                                        aria-label="Floating label select example" name="country_id" id="country"
+                                        required>
 
                                         @foreach ($countries as $country)
                                             <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -170,7 +171,7 @@
                                 <div class="form-floating">
 
                                     <select class="form-select" aria-label="Floating label select example"
-                                        name="hotel_id" id="hotel">
+                                        name="hotel_id" id="hotel" required>
                                         @foreach ($hotels as $hotel)
                                             <option value="{{ $hotel->id }}">{{ $hotel->name }}</option>
                                         @endforeach
@@ -180,7 +181,7 @@
                                 <div class="form-floating">
 
                                     <select class="form-select" aria-label="Floating label select example"
-                                        name="restaurant_id" id="restaurant">
+                                        name="restaurant_id" id="restaurant" required>
 
                                         @foreach ($restaurants as $restaurant)
                                             <option value="{{ $restaurant->id }}">{{ $restaurant->name }}</option>
@@ -191,20 +192,20 @@
 
                             </div>
                             <div class="form-outline">
-                                <input type="text" class="form-control" name="tour_name" id="name"
+                                <input type="text" class="form-control" name="tour_name" id="name" required
                                     value="" />
                                 <label class="form-label" for="name">Tour Pack Name</label>
                             </div>
                             <div class="form-outline">
-                                <input type="number" class="form-control" name="tour_price" id="price" />
+                                <input type="number" class="form-control" name="tour_price" id="price" required />
                                 <label class="form-label" for="price">Price</label>
                             </div>
                             <div class="form-outline">
-                                <textarea class="form-control" rows="4" name="tour_description" id="description"></textarea>
+                                <textarea class="form-control" rows="4" name="tour_description" id="description" required></textarea>
                                 <label class="form-label" for="description">Tour Pack Description</label>
                             </div>
                             <label for="image" class="file-label">Image File Upload</label>
-                            <input type="file" name="image" id="">
+                            <input type="file" name="image" id="" required>
 
                     </div>
                     <div class="modal-footer">
@@ -216,38 +217,6 @@
             </div>
         </div>
 
-    </section>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-
-    <script>
-        $(document).on("click", "#edit-tour", function() {
-            let id = $(this).data('id');
-            let country = $(this).data('country');
-            let name = $(this).data('name');
-            let hotel = $(this).data('hotel');
-            let restaurant = $(this).data('restaurant');
-            let description = $(this).data('description');
-            let price = $(this).data('price');
-            let image = $(this).data('image');
-
-            console.log(hotel);
-            $("#tour_Id").val(id)
-            $("#name").val(name);
-            $(".modal-body #hotel").val(hotel)
-            $(".modal-body #restaurant").val(restaurant)
-            $(".modal-body #description").val(description)
-            $(".modal-body #price").val(price)
-            $(".modal-body #image").val(image)
-            $(".modal-body #country").val(country)
-            $('#editModal').modal('show');
 
 
-
-        })
-    </script>
 @endsection

@@ -122,11 +122,12 @@ class MainController extends Controller
     public static function imageAdapter($imageURL)
     {
 
-        if(Str::contains($imageURL, '.png') || Str::contains($imageURL, '.jpg') || Str::contains($imageURL, '.jpeg') || Str::contains($imageURL, '.jfif'))
+        if(Str::contains($imageURL,'https://')  ||  Str::contains($imageURL,'data:image'))
         {
-            return 'storage/images/'.$imageURL;
+            return $imageURL;
         }
-        return $imageURL;
+
+        return 'storage/images/'.$imageURL;
     }
 
 }

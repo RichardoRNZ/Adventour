@@ -69,15 +69,15 @@
                                 <label class="form-label" for="form12">Tour Pack</label>
                             </div>
                             <div class="form-outline">
-                                <input type="text" id="form12" class="form-control" name="name" />
+                                <input type="text" id="form12" class="form-control" name="name" required />
                                 <label class="form-label" for="form12">Place Name</label>
                             </div>
                             <div class="form-outline">
-                                <textarea class="form-control" id="textAreaExample" rows="4" name="description"></textarea>
+                                <textarea class="form-control" id="textAreaExample" rows="4" name="description" required></textarea>
                                 <label class="form-label" for="textAreaExample">Place Description</label>
                             </div>
                             <label for="image" class="file-label">Image File Upload</label>
-                            <input type="file" name="image" id="">
+                            <input type="file" name="image" id="" required>
 
                     </div>
                     <div class="modal-footer">
@@ -99,7 +99,7 @@
                         <form action="{{ route('edit-destination') }}" method="POST" enctype="multipart/form-data"
                             class="modal-form">
                             @csrf
-                            <input type="text" name="id" id="destination_Id">
+                            <input type="hidden" name="id" id="destination_Id">
                             <input type="hidden" name="tour_id" value="{{ $pack_id }}">
                             <div class="form-outline">
                                 <input type="text" id="form12" class="form-control" value="{{ $tour }}"
@@ -107,15 +107,15 @@
                                 <label class="form-label" for="form12">Tour Pack</label>
                             </div>
                             <div class="form-outline">
-                                <input type="text" id="name" class="form-control" name="name" />
+                                <input type="text" id="name" class="form-control" name="name" required />
                                 <label class="form-label" for="form12">Place Name</label>
                             </div>
                             <div class="form-outline">
-                                <textarea class="form-control" id="description" rows="4" name="description"></textarea>
+                                <textarea class="form-control" id="description" rows="4" name="description" required></textarea>
                                 <label class="form-label" for="textAreaExample">Place Description</label>
                             </div>
                             <label for="image" class="file-label">Image File Upload</label>
-                            <input type="file" name="image" id="">
+                            <input type="file" name="image" id=""required>
 
                     </div>
                     <div class="modal-footer">
@@ -127,28 +127,4 @@
             </div>
         </div>
     </section>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-
-    <script>
-        $(document).on("click", "#edit-destination", function() {
-            let id = $(this).data('id');
-
-            let name = $(this).data('name');
-
-            let description = $(this).data('description');
-
-            $("#destination_Id").val(id);
-            $("#name").val(name);
-            $('#description').val(description);
-            $('#editModal').modal('show');
-
-
-
-        })
-    </script>
 @endsection
