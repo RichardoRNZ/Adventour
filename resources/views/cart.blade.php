@@ -11,7 +11,7 @@
                         @csrf
                         <div class="form-row">
                             <input type="date" name="date" id="">
-                            <input type="number" name="phone" id="" placeholder="Phone Number">
+                            <input type="" name="phone" id="" placeholder="Phone Number">
                         </div>
                         <div class="form-row">
                             <select name="gender" id="">

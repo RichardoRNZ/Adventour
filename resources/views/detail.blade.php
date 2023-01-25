@@ -114,7 +114,7 @@
                                             <form action="{{ route('add-to-cart') }}" method="get">
                                                 @csrf
                                                 <div class="detail-tour">
-                                                    <label for="">Tour Pack A</label>
+                                                    <label for="">{{$t->name}}</label>
                                                     @if (Str::contains($image, 'storage/'))
                                                         <img src="{{ $image }}" alt="">
                                                     @else
