@@ -126,11 +126,11 @@ class AuthController extends Controller
         ]);
         if(!Hash::check($request->old_password, auth()->user()->password))
         {
-            return redirect()->back()->with('failed',"Password does not match");
+            return redirect()->back()->with('success',"Password does not match");
         }
         if($request->old_password == $request->new_password)
         {
-            return redirect()->back()->with('failed',"Password same");
+            return redirect()->back()->with('success',"Password same");
         }
         $user = User::find(auth()->user()->id);
         $user->password = bcrypt($request->new_password);
