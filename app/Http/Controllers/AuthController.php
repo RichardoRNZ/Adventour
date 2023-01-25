@@ -45,7 +45,7 @@ class AuthController extends Controller
 
                 ]);
                 Auth::login($newUser);
-                return redirect()->route('home');
+                return redirect()->route('home')->with('success','Login Success');
             }
 
         } catch (\Throwable $th) {
@@ -66,10 +66,10 @@ class AuthController extends Controller
         if(Auth::attempt($credentials, true)){
             Session::put('mysession','');
             if(Auth::user()->role == 'admin') {
-                return redirect()->route('dashboard');
-            } return redirect()->route('home');
+                return redirect()->route('dashboard')->with('success','Login Success');
+            } return redirect()->route('home')->with('success','Login Success');
         }
-        return redirect()->back();
+        return redirect()->back()->with('success','Login Failed');
     }
 
 
@@ -91,6 +91,55 @@ class AuthController extends Controller
 
        return $this->login($request);
     }
+    public function editProfileLogic(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+        $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'avatar' => $this->newImage($request)
+            ]);
+            return redirect()->route('home')->with('success', 'Edit Profile Success');
+    }
+    public function newImage(Request $request)
+    {
+        $fileObj = $request->file('image');
+        $name = $fileObj->getClientOriginalName();
+        $ext = $fileObj->getClientOriginalExtension();
+        $new_file_name = $name . time() . '.' .$ext;
+        $fileObj->storeAs('public/images', $new_file_name);
+        return $new_file_name;
+    }
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            "old_password"=>"required|min:6",
+            "new_password"=>"required|min:6",
+            "confirm_password" => "required|same:new_password"
+        ],[
+            'old_password.required' => 'Password must be filled',
+            'old_password.min'=>'Password must be filled with minimum 6 characters',
+            'new_password.required' => 'Password must be filled',
+            'new_password.min'=>'Password must be filled with minimum 6 characters',
+            'confirm_password.required' => 'Please confirm your password',
+            'confirm_password.same' => 'Password must be same'
+        ]);
+        if(!Hash::check($request->old_password, auth()->user()->password))
+        {
+            return redirect()->back()->with('failed',"Password does not match");
+        }
+        if($request->old_password == $request->new_password)
+        {
+            return redirect()->back()->with('failed',"Password same");
+        }
+        $user = User::find(auth()->user()->id);
+        $user->password = bcrypt($request->new_password);
+        $user->update();
+        return redirect()->route('home')->with('success','Password Successfuly Changed');
+
+
+    }
+
     public function logout() {
         Auth::logout();
         return redirect()->route('login_page');

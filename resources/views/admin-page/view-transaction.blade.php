@@ -3,7 +3,7 @@
 <section class="manage-hotels">
     @include('Components.sidebar')
     <div class="col-md-12" id="admin-content">
-        <h3><i class="fas fa-users"></i> View Customer</h3>
+        <h3><i class="fas fa-file-invoice"></i> View Transaction</h3>
     </div>
     <div class="col-md-12" id="admin-content">
         <div class="item-table">

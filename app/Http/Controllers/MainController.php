@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 class MainController extends Controller
 {
     public function indexhome() {
@@ -24,28 +25,23 @@ class MainController extends Controller
         return view('home');
     }
 
-    public function profile() {
-        session()->forget("cart");
-        return view('profile');
-    }
 
-    public function about() {
-        session()->forget("cart");
-        return view('about');
-    }
 
-    public function contact() {
-        session()->forget("cart");
-        return view('contact');
-    }
 
     public function loginPage() {
         session()->forget("cart");
         return view('login');
     }
+    public function editProfile(Request $request)
+    {
 
+        return view('edit-profile');
+    }
 
-
+    public function changePassword()
+    {
+        return view('change-password');
+    }
 
     public function indextravel() {
         session()->forget("cart");
@@ -122,6 +118,15 @@ class MainController extends Controller
     {
         $tour = Tour::where('id',$id)->get();
         return $tour;
+    }
+    public static function imageAdapter($imageURL)
+    {
+
+        if(Str::contains($imageURL, '.png') || Str::contains($imageURL, '.jpg') || Str::contains($imageURL, '.jpeg') || Str::contains($imageURL, '.jfif'))
+        {
+            return 'storage/images/'.$imageURL;
+        }
+        return $imageURL;
     }
 
 }

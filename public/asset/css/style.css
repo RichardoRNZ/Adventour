@@ -797,6 +797,147 @@ body{
     .form-outline label{
         text-transform: capitalize;
     }
+    .about-1{
+        float: right;
+        border-top-right-radius: 2vh;
+        border-bottom-right-radius: 2vh;
+        box-shadow: 0 0px 10px rgba(0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        font-family: sans-serif;
+        text-align: left;
+        display: flex;
+        margin-top: 8%;
+        margin-bottom: 10%;
+        height: 70vh;
+        background-image: url('../images/about.png') ;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 90vh;
+    }
+
+    .about-2{
+        float: left;
+        border-top-left-radius: 2vh;
+        border-bottom-left-radius: 2vh;
+        box-shadow: 0 0px 15px rgba(0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        font-family: sans-serif;
+        text-align: left;
+        font-weight: bold;
+        font-size: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        justify-content: left;
+        margin-top: 8%;
+        margin-bottom: 10%;
+        margin-left: 3%;
+        padding-top: 50px;
+        padding-left: 50px;
+        height: 70vh;
+        width: 104vh;
+        background-color: white;
+        color: black;
+    }
+
+    .about-3{
+        font-family: sans-serif;
+        text-align: left;
+        font-weight: bold;
+        font-size: 25px;
+        flex-direction: column;
+        display: flex;
+        align-items: left;
+        color: black;
+    }
+    .contact-1{
+        border-radius: 50px;
+        box-shadow: 0 0px 15px rgba(0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        font-family: sans-serif;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 10%;
+        margin-top: 5%;
+        margin-left: 23.5%;
+        margin-right: 25%;
+        margin-bottom: 10%;
+        height: 70vh;
+        border-radius: 2vh;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url('../images/contact.jpg') ;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 105vh;
+    }
+
+    .contact-2{
+        font-family: sans-serif;
+        text-align: left;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        justify-content: center;
+        margin: 5%;
+        padding-left: 50px;
+        height: 60vh;
+        width: 89vh;
+        border-radius: 2vh;
+        background-color: white;
+        color: black;
+    }
+
+    .contact-3{
+        font-family: sans-serif;
+        text-align: left;
+        font-weight: bold;
+        font-size: 40px;
+        color: black;
+    }
+    .editprof1{
+        border-radius: 50px;
+            box-shadow: 0 0px 15px rgba(0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            font-family: sans-serif;
+            text-align: left;
+            align-items: center;
+            justify-content: center;
+            padding-top: 10vh;
+            padding-left: 10vh;
+            padding-right: 10vh;
+            margin-top: 8%;
+            margin-left: 35.5%;
+            margin-right: 25%;
+            margin-bottom: 10%;
+            height: 80vh;
+            border-radius: 2vh;
+            width: 70vh;
+            background-color: white;
+    }
+
+    .editprof3{
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 35px;
+        color: black;
+    }
+
+    .form-group-editprof, .editprof2 .form-outline{
+        font-family: sans-serif;
+        font-weight: 500;
+        font-size: 15px;
+        color: #9a9a9a;
+        margin-top: 5%;
+    }
+    .editprof2 button{
+        background-color: var(--main-color);
+        color: #fff;
+    }
+    .editprof2 button:hover{
+        color: var(--secondary-color);
+        border: 2px solid var(--main-color);
+        background: #fff;
+    }
 
   /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
   @media screen and (max-width: 400px) {

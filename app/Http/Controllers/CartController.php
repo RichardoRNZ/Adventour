@@ -104,6 +104,6 @@ class CartController extends Controller
 
         session()->forget("cart");
 
-        return redirect('/');
+        return redirect()->route('history')->with('success','Booking Success');
     }
 }

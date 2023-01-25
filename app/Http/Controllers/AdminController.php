@@ -63,7 +63,7 @@ class AdminController extends Controller
         $hotel->description = $request->hotel_description;
         $hotel->image = $this->newImage($request);
         $hotel->save();
-        return redirect()->back();
+        return redirect()->back()->with('success','Add Hotel Success');
     }
     public function addNewRestaurant(Request $request)
     {
@@ -74,7 +74,7 @@ class AdminController extends Controller
         $restaurant->description = $request->restaurant_description;
         $restaurant->image = $this->newImage($request);
         $restaurant->save();
-        return redirect()->back();
+        return redirect()->back()->with('success','Add Restaurant Success');
 
     }
     public function addNewTourPacket(Request $request)
@@ -89,7 +89,7 @@ class AdminController extends Controller
         $tour->image = $this->newImage($request);
         $tour->save();
 
-        return redirect()->route('tours');
+        return redirect()->back()->with('success','Add Tour Pack Success');
 
     }
     public function addNewTourDetail(Request $request)
@@ -100,7 +100,7 @@ class AdminController extends Controller
         $tours->description = $request->description;
         $tours->image = $this->newImage($request);
         $tours->save();
-        return redirect()->back();
+        return redirect()->back()->with('success','Add Destination Success');
     }
     public function EditTour(Request $request)
     {
@@ -113,7 +113,7 @@ class AdminController extends Controller
         $tour->price = $request->tour_price;
         $tour->image = $this->newImage($request);
         $tour->update();
-        return redirect()->back();
+        return redirect()->back()->with('success','Edit Success');
     }
     public function EditTourDetail(Request $request)
     {
@@ -125,7 +125,7 @@ class AdminController extends Controller
         $tours->image = $this->newImage($request);
         $tours->update();
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Edit Success');
 
     }
     public function EditHotel(Request $request)
@@ -137,7 +137,7 @@ class AdminController extends Controller
         $hotel->description = $request->hotel_description;
         $hotel->image = $this->newImage($request);
         $hotel->update();
-        return redirect()->back();
+        return redirect()->back()->with('success','Edit Success');
 
     }
     public function EditRestaurant(Request $request)
@@ -149,27 +149,27 @@ class AdminController extends Controller
         $restaurant->description = $request->restaurant_description;
         $restaurant->image = $this->newImage($request);
         $restaurant->update();
-        return redirect()->back();
+        return redirect()->back()->with('success','Edit Success');
     }
     public function deleteTour(Request $request)
     {
         Tour::where('id', $request->id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','Delete Success');
     }
     public function deleteTourDetail(Request $request)
     {
         Tourdetail::where('id', $request->id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','Delete Success');
     }
     public function deleteHotel(Request $request)
     {
         Hotel::where('id', $request->id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','Delete Success');
     }
     public function deleteRestaurant(Request $request)
     {
         Restaurant::where('id', $request->id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','Delete Success');
     }
 
     public function newImage(Request $request)

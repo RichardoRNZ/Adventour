@@ -31,6 +31,7 @@
   <body>
     <!-- Start your project here-->
         @include('Components.navbar')
+        @include('Components.message')
         @yield('content')
         @include('Components.footer')
 
