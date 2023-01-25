@@ -25,7 +25,7 @@
                     </div>
                     <input type="email" placeholder="Email" name="email" required>
                     <input type="password" name="password" placeholder="Password" required>
-                    <a href="">Forgot Password</a>
+                    <a href="{{route('change-password')}}">Forgot Password</a>
                     <button>Login</button>
                 </form>
             </div>

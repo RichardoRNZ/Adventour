@@ -29,8 +29,8 @@ Route::get('/google',[AuthController::class,'redirectToGoogle'])->name('google_l
 Route::get('/authorized/google/callback',[AuthController::class,'GoogleRedirect'])->middleware('guest');
 Route::get('/profile',[MainController::class,'editProfile'])->name('profile')->middleware('security');
 Route::post('edit/profile',[AuthController::class,'editProfileLogic'])->name('edit-profile')->middleware('security');
-Route::get('/change-password',[MainController::class,'changePassword'])->name('change-password-view')->middleware('security');
-Route::post('/change-password',[AuthController::class,'changePassword'])->name('change-password')->middleware('security');
+Route::get('/change-password',[MainController::class,'changePassword'])->name('change-password-view');
+Route::post('/change-password',[AuthController::class,'changePassword'])->name('change-password');
 /* Main Pages */
 Route::get('/travelpack', [MainController::class, 'indextravel'])->name('package');
 Route::get('/detail/{id}', [MainController::class, 'redirectDetail'])->name('tour.detail');
