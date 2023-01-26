@@ -33,8 +33,10 @@ class AdminController extends Controller
     }
     public function manageDestination(Request $request)
     {
+        $tour_id= $request->id;
+        $tour = Tour::select('name')->where('id', $request->id)->get();
         $destination = Tourdetail::where('tour_id',$request->id)->get();
-        return view('admin-page.manage-destination', compact('destination'));
+        return view('admin-page.manage-destination', compact('destination','tour','tour_id'));
     }
     public function manageRestaurant()
     {

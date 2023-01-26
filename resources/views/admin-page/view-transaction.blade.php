@@ -8,7 +8,7 @@
         <div class="col-md-12" id="admin-content">
             <div class="item-table">
                 <table class="table">
-                    <thead class="thead-dark">
+                    <thead class="thead-dark"></thead>
                         <tr>
                             @php
                                 $no = 1;

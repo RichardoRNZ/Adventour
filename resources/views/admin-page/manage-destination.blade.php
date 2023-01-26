@@ -23,10 +23,7 @@
                     </thead>
                     <tbody>
                         @foreach ($destination as $item)
-                            @php
-                                $tour = $item->tours->name;
-                                $pack_id = $item->tour_id;
-                            @endphp
+
                             <tr>
                                 <th scope="row">{{ $item->id }}</th>
                                 <td>{{ $item->name }}</td>
@@ -51,80 +48,86 @@
                 </table>
             </div>
         </div>
-        <div class="modal fade " id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Tour Destination</h5>
-                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('add-destination') }}" method="POST" enctype="multipart/form-data"
-                            class="modal-form">
-                            @csrf
-                            <input type="hidden" name="tour_id" value="{{ $pack_id }}">
-                            <div class="form-outline">
-                                <input type="text" id="form12" class="form-control" value="{{ $tour }}"
-                                    disabled />
-                                <label class="form-label" for="form12">Tour Pack</label>
-                            </div>
-                            <div class="form-outline">
-                                <input type="text" id="form12" class="form-control" name="name" required />
-                                <label class="form-label" for="form12">Place Name</label>
-                            </div>
-                            <div class="form-outline">
-                                <textarea class="form-control" id="textAreaExample" rows="4" name="description" required></textarea>
-                                <label class="form-label" for="textAreaExample">Place Description</label>
-                            </div>
-                            <label for="image" class="file-label">Image File Upload</label>
-                            <input type="file" name="image" id="" required>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                        <button class="btn btn-primary">Add Destination</button>
-                    </div>
-                    </form>
+      @foreach ($tour as $t)
+      <div class="modal fade " id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Tour Destination</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    <form action="{{ route('add-destination') }}" method="POST" enctype="multipart/form-data"
+                        class="modal-form">
+                        @csrf
+
+                        <input type="hidden" name="tour_id" value="{{ $tour_id }}">
+                        <div class="form-outline">
+                            <input type="text" id="form12" class="form-control" value="{{ $t->name }}"
+                                disabled />
+                            <label class="form-label" for="form12">Tour Pack</label>
+                        </div>
+
+                        <div class="form-outline">
+                            <input type="text" id="form12" class="form-control" name="name" required />
+                            <label class="form-label" for="form12">Place Name</label>
+                        </div>
+                        <div class="form-outline">
+                            <textarea class="form-control" id="textAreaExample" rows="4" name="description" required></textarea>
+                            <label class="form-label" for="textAreaExample">Place Description</label>
+                        </div>
+                        <label for="image" class="file-label">Image File Upload</label>
+                        <input type="file" name="image" id="" required>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                    <button class="btn btn-primary">Add Destination</button>
+                </div>
+                </form>
             </div>
         </div>
-        <div class="modal fade " id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Tour Destination</h5>
-                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('edit-destination') }}" method="POST" enctype="multipart/form-data"
-                            class="modal-form">
-                            @csrf
-                            <input type="hidden" name="id" id="destination_Id">
-                            <input type="hidden" name="tour_id" value="{{ $pack_id }}">
-                            <div class="form-outline">
-                                <input type="text" id="form12" class="form-control" value="{{ $tour }}"
-                                    disabled />
-                                <label class="form-label" for="form12">Tour Pack</label>
-                            </div>
-                            <div class="form-outline">
-                                <input type="text" id="name" class="form-control" name="name" required />
-                                <label class="form-label" for="form12">Place Name</label>
-                            </div>
-                            <div class="form-outline">
-                                <textarea class="form-control" id="description" rows="4" name="description" required></textarea>
-                                <label class="form-label" for="textAreaExample">Place Description</label>
-                            </div>
-                            <label for="image" class="file-label">Image File Upload</label>
-                            <input type="file" name="image" id=""required>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                        <button class="btn btn-primary">Save Changes</button>
-                    </div>
-                    </form>
+    </div>
+    <div class="modal fade " id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Tour Destination</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    <form action="{{ route('edit-destination') }}" method="POST" enctype="multipart/form-data"
+                        class="modal-form">
+                        @csrf
+                        <input type="hidden" name="id" id="destination_Id">
+
+                        <input type="hidden" name="tour_id" value="{{ $tour_id }}">
+                        <div class="form-outline">
+                            <input type="text" id="form12" class="form-control" value="{{ $t->name }}"
+                                disabled />
+                            <label class="form-label" for="form12">Tour Pack</label>
+                        </div>
+
+                        <div class="form-outline">
+                            <input type="text" id="name" class="form-control" name="name" required />
+                            <label class="form-label" for="form12">Place Name</label>
+                        </div>
+                        <div class="form-outline">
+                            <textarea class="form-control" id="description" rows="4" name="description" required></textarea>
+                            <label class="form-label" for="textAreaExample">Place Description</label>
+                        </div>
+                        <label for="image" class="file-label">Image File Upload</label>
+                        <input type="file" name="image" id=""required>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                    <button class="btn btn-primary">Save Changes</button>
+                </div>
+                </form>
             </div>
         </div>
+    </div>
+      @endforeach
     </section>
 @endsection
