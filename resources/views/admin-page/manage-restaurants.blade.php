@@ -39,7 +39,7 @@
                                 <td><a id="edit-restaurant" data-id="{{ $restaurant->id }}"
                                         data-name="{{ $restaurant->name }}" data-country="{{ $restaurant->country_id }}"
                                         data-description="{{ $restaurant->description }}"
-                                        data-city="{{ $restaurant->city }}"><i
+                                        data-city="{{ $restaurant->city }}" data-mdb-toggle="tooltip" title="Edit Restaurant"><i
                                             class="fas fa-edit bg-success p-2 text-white rounded"></i></a></td>
                                 <td>
                                     <form action="{{ route('delete-restaurant') }}" method="POST">
@@ -47,7 +47,7 @@
                                         @method('delete')
                                         <input type="hidden" name="id" value="{{ $restaurant->id }}">
                                         <button style="background: none; border:none;"><i
-                                                class="fas fa-trash-alt bg-danger p-2 text-white rounded"></i></button>
+                                                class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-mdb-toggle="tooltip" title="Delete Restaurant"></i></button>
                                     </form>
                                 </td>
 
@@ -63,7 +63,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Tour Pack Info</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Add Restaurant Info</h5>
                         <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -152,7 +152,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                        <button class="btn btn-primary">Add Pack</button>
+                        <button class="btn btn-primary">Save Changes</button>
                         </form>
                     </div>
                 </div>

@@ -109,4 +109,11 @@ $(document).on("click", "#edit-hotel", function() {
 
 });
 
+$(document).ready(function() {
+    window.setTimeout(function() {
+        $(".alert").alert('close');
+    }, 3000);
+});
+
+
 

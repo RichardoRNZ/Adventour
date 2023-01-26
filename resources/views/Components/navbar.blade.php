@@ -47,12 +47,6 @@
                 <li class="nav-item text-white">
                     <a class="nav-link text-white" href="{{ route('package') }}">Package</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#contact">Contact</a>
-                </li>
             </ul>
             <!-- Left links -->
         </div>
@@ -73,12 +67,12 @@
             @if (Auth::user()->role == 'customer')
                 <div class="d-flex align-items-center">
                     <!-- Icon -->
-                    <a class="text-reset me-3" href="{{ route('cart-view') }}">
+                    <a class="text-reset me-3" href="{{ route('cart-view') }}" data-mdb-toggle="tooltip" title="Booking Ticket">
                         <i class="icon fas fa-ticket"></i>
                     </a>
 
                     <!-- Notifications -->
-                    <a class="text-reset me-3" href="{{ route('history') }}">
+                    <a class="text-reset me-3" href="{{ route('history') }}" data-mdb-toggle="tooltip" title="Transaction History">
                         <i class="icon fas fa-clock-rotate-left"></i>
                     </a>
             @endif
@@ -88,7 +82,7 @@
                 @if (Auth::user()->avatar != null)
                     @if (Str::contains($image, 'storage/images'))
                         <img src="{{ asset($image) }}" class="rounded-circle" height="25"
-                            alt="Black and White Portrait of a Man" loading="lazy" onclick="ProfileMenu()">
+                            alt="Black and White Portrait of a Man" loading="lazy" onclick="ProfileMenu()" >
                     @else
                         <img src="{{ Auth::user()->avatar }}" class="rounded-circle" height="25"
                             alt="Black and White Portrait of a Man" loading="lazy" onclick="ProfileMenu()" />

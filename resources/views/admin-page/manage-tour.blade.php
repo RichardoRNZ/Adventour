@@ -54,7 +54,7 @@
                                         data-country="{{ $pack->country_id }}" data-hotel="{{ $pack->hotel_id }}"
                                         data-restaurant="{{ $pack->restaurant_id }}"
                                         data-description="{{ $pack->description }}" data-price="{{ $pack->price }}"
-                                        data-image="{{ $pack->image }}">
+                                        data-image="{{ $pack->image }}" data-mdb-toggle="tooltip" title="Edit Tour">
                                         <i class="fas fa-edit bg-success p-2 text-white rounded"></i></a></td>
                                 <td>
                                     <form action="{{ route('delete-tour') }}" method="POST">
@@ -62,7 +62,7 @@
                                         @method('delete')
                                         <input type="hidden" name="id" value="{{ $pack->id }}">
                                         <button style="background: none; border:none;"><i
-                                                class="fas fa-trash-alt bg-danger p-2 text-white rounded"></i></button>
+                                                class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-mdb-toggle="tooltip" title="Delete Tour"></i></button>
                                     </form>
                         @endforeach
 
@@ -210,7 +210,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                        <button class="btn btn-primary">Edit Pack</button>
+                        <button class="btn btn-primary">Save Changes</button>
                         </form>
                     </div>
                 </div>

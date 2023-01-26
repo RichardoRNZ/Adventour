@@ -77,11 +77,21 @@ class AuthController extends Controller
     public function registeruser(Request $request) {
         $rules = [
             'name' => 'required|string|min:5|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|alpha_num',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:8|alpha_num',
+        ];
+        $msg = [
+            'name.string' => 'Name must be string',
+            'name.min' => 'Name must be filled with min 5 characters',
+            'name.max' => 'Name must below than 255 characters',
+            'email.email' => 'Please input valid email address',
+            'email.unique' => 'This email has been taken',
+            'password.min' => 'Minimum password 8 characters',
+            'password.alpha_num' => 'Password must contain letter and number'
+
         ];
 
-       $request->validate($rules);
+       $request->validate($rules,$msg);
 
         $user = new User();
         $user->name = $request->name;

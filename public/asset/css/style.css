@@ -9,6 +9,10 @@
 .navbar, footer{
     background-color: #191923;
 }
+.alert{
+    width: 120%;
+
+}
 
 body{
     background-color: #FBFEF9;
@@ -836,18 +840,18 @@ body{
         height: 70vh;
         width: 104vh;
         background-color: white;
-        color: black;
+        color: #000;
     }
 
     .about-3{
         font-family: sans-serif;
         text-align: left;
-        font-weight: bold;
+        font-weight: 500;
         font-size: 25px;
         flex-direction: column;
         display: flex;
         align-items: left;
-        color: black;
+        color: #000;
     }
     .contact-1{
         border-radius: 50px;

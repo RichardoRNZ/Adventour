@@ -32,14 +32,14 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td><a id="edit-destination" data-id="{{ $item->id }}" data-name="{{ $item->name }}"
-                                        data-description="{{ $item->description }}"><i
+                                        data-description="{{ $item->description }}" data-mdb-toggle="tooltip" title="Edit Destination"><i
                                             class="fas fa-edit bg-success p-2 text-white rounded"></i></a></td>
                                 <td>
                                     <form action="{{ route('delete-destination') }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <input type="hidden" name="id" value="{{ $item->id }}">
-                                        <button style="background: none; border:none;"><i
+                                        <button style="background: none; border:none;" data-mdb-toggle="tooltip" title="Delete Destination"><i
                                                 class="fas fa-trash-alt bg-danger p-2 text-white rounded"></i></button>
                                     </form>
                                 </td>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                        <button class="btn btn-primary">Save changes</button>
+                        <button class="btn btn-primary">Add Destination</button>
                     </div>
                     </form>
                 </div>
@@ -92,7 +92,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Tour Destination</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Tour Destination</h5>
                         <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -120,7 +120,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                        <button class="btn btn-primary">Save changes</button>
+                        <button class="btn btn-primary">Save Changes</button>
                     </div>
                     </form>
                 </div>

@@ -23,7 +23,7 @@
                     <div class="social-container">
                         <a href="{{ route('google_login') }}"><i class="fab fa-google"></i></a>
                     </div>
-                    <input type="email" placeholder="Email" name="email" required>
+                    <input type="email" placeholder="Email" name="email"  required>
                     <input type="password" name="password" placeholder="Password" required>
                     <a href="{{route('change-password')}}">Forgot Password</a>
                     <button>Login</button>
